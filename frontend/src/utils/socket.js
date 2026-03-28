@@ -2,6 +2,11 @@ import { io } from 'socket.io-client';
 
 const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000';
 
+console.log(`🔧 Socket.IO Configuration:`);
+console.log(`   URL: ${SOCKET_URL}`);
+console.log(`   Environment: ${import.meta.env.MODE}`);
+console.log(`   VITE_SOCKET_URL env: ${import.meta.env.VITE_SOCKET_URL || 'undefined (using fallback)'}`);
+
 let socket = null;
 let socketStatus = 'disconnected'; // Track socket status
 

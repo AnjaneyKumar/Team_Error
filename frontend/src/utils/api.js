@@ -1,9 +1,15 @@
 import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_BASE_URL = `${API_URL}/api`;
+
+console.log(`🔧 API Configuration:`);
+console.log(`   Base URL: ${API_BASE_URL}`);
+console.log(`   Environment: ${import.meta.env.MODE}`);
+console.log(`   VITE_API_URL env: ${import.meta.env.VITE_API_URL || 'undefined (using fallback)'}`);
 
 const api = axios.create({
-  baseURL: `${API_URL}/api`,
+  baseURL: API_BASE_URL,
   timeout: 10000, // 10 second timeout
   headers: {
     'Content-Type': 'application/json',
