@@ -21,15 +21,14 @@ const server = createServer(app);
 // Socket.IO Configuration
 const io = new SocketServer(server, {
   cors: {
-    origin: process.env.SOCKET_IO_CORS_ORIGIN || 'http://localhost:5173',
+    origin: "*",
     methods: ['GET', 'POST']
   }
 });
 
 // Middleware
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
-  credentials: true
+  origin: "*"
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
