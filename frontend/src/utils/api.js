@@ -1,15 +1,17 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-const API_BASE_URL = `${API_URL}/api`;
+// Production: Use VITE_API_URL from Netlify environment variables
+// Development: Use localhost fallback
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API_ENDPOINT = `${API_BASE_URL}/api`;
 
 console.log(`🔧 API Configuration:`);
-console.log(`   Base URL: ${API_BASE_URL}`);
+console.log(`   Endpoint: ${API_ENDPOINT}`);
 console.log(`   Environment: ${import.meta.env.MODE}`);
-console.log(`   VITE_API_URL env: ${import.meta.env.VITE_API_URL || 'undefined (using fallback)'}`);
+console.log(`   VITE_API_URL: ${import.meta.env.VITE_API_URL || 'not set (using localhost)'}`);
 
 const api = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: API_ENDPOINT,
   timeout: 10000, // 10 second timeout
   headers: {
     'Content-Type': 'application/json',

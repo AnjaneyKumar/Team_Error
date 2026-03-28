@@ -1,11 +1,13 @@
 import { io } from 'socket.io-client';
 
-const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000';
+// Production: Use VITE_API_URL from Netlify environment variables
+// Development: Use localhost fallback
+const SOCKET_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 console.log(`🔧 Socket.IO Configuration:`);
 console.log(`   URL: ${SOCKET_URL}`);
 console.log(`   Environment: ${import.meta.env.MODE}`);
-console.log(`   VITE_SOCKET_URL env: ${import.meta.env.VITE_SOCKET_URL || 'undefined (using fallback)'}`);
+console.log(`   VITE_API_URL: ${import.meta.env.VITE_API_URL || 'not set (using localhost)'}`);
 
 let socket = null;
 let socketStatus = 'disconnected'; // Track socket status
@@ -23,7 +25,8 @@ export const connectSocket = () => {
     reconnectionDelay: 1000,
     reconnectionDelayMax: 5000,
     reconnectionAttempts: 5,
-    transports: ['websocket', 'polling'], // Allow fallback to polling
+    transports: ['websocket', 'polling'],
+    withCredentials: true,
   });
 
   socket.on('connect', () => {
