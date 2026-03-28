@@ -21,14 +21,25 @@ const server = createServer(app);
 // Socket.IO Configuration
 const io = new SocketServer(server, {
   cors: {
-    origin: "*",
-    methods: ['GET', 'POST']
+    origin: [
+      'https://transit-error.netlify.app',     // Production Netlify URL
+      'http://localhost:5173',                  // Local development
+      'http://localhost:5174'                   // Vite dev server
+    ],
+    methods: ['GET', 'POST'],
+    credentials: true
   }
 });
 
 // Middleware
 app.use(cors({
-  origin: "*"
+  origin: [
+    'https://transit-error.netlify.app',     // Production Netlify URL
+    'http://localhost:5173',                  // Local development
+    'http://localhost:5174'                   // Vite dev server
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
