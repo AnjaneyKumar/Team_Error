@@ -1,0 +1,12 @@
+{
+  "name": "transport-dashboard",
+  "version": "1.0.0",
+  "description": "Public Transport Information Dashboard - Complete MERN Stack Application",
+  "private": true,
+  "scripts": {
+    "dev": "echo \"Run backend and frontend separately\""
+  },
+  "keywords": ["transport", "bus", "real-time", "tracking", "react", "express", "mongodb"],
+  "author": "",
+  "license": "MIT"
+}
